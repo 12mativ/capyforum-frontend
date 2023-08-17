@@ -15,7 +15,6 @@ import {
   createClientComponentClient,
 } from '@supabase/auth-helpers-nextjs'
 import {Database} from '@/db_types'
-import useUsernameModal from "@/hooks/useUsernameModal";
 import {useProfile} from "@/hooks/useProfile";
 
 const Profile = () => {
@@ -35,7 +34,6 @@ const Profile = () => {
   const [website, setWebsite] = useState<string | null>(null)
   const [avatar_url, setAvatarUrl] = useState<string | null>(null)
   const user = session?.user
-  const usernameModal = useUsernameModal()
 
   const getProfile = useCallback(async () => {
     try {
