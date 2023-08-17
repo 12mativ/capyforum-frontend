@@ -106,7 +106,7 @@ const Profile = () => {
             className='w-[70px] h-[70px] rounded-lg'
           />
           <p className='hidden xl:block'>
-            {!loading ? (username ? username : user.email) : 'Loading...'}
+            {!loading ? (username ? username : user?.email) : 'Loading...'}
           </p>
         </div>
         <Button
