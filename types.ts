@@ -1,7 +1,7 @@
 export interface ProfileDetails {
   id: string
-  first_name: string
-  last_name: string
+  username?: string
+  website?: string
   full_name?: string
-  avatar?: string
+  avatar_url?: string
 }

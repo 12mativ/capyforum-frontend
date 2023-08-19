@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import {MyProfileContextProvider} from '@/hooks/useProfile'
+import {MyUserContextProvider} from '@/hooks/useProfile'
 
 interface UserProviderProps {
   children: React.ReactNode
@@ -10,9 +10,9 @@ interface UserProviderProps {
 
 const UserProvider: React.FC<UserProviderProps> = ({children}) => {
   return (
-    <MyProfileContextProvider>
+    <MyUserContextProvider>
       {children}
-    </MyProfileContextProvider>
+    </MyUserContextProvider>
   )
 }
 

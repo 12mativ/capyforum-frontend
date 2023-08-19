@@ -21,7 +21,7 @@ export interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({children}) => {
-  const {profile, isLoading} = useProfile()
+  const {user, isLoading} = useProfile()
 
   const router = useRouter()
   const pathname = usePathname()
@@ -58,7 +58,7 @@ const Header: React.FC<HeaderProps> = ({children}) => {
 
   return (
     <>
-      {profile ? (
+      {user ? (
         <>
           <div
             className='
@@ -71,6 +71,7 @@ const Header: React.FC<HeaderProps> = ({children}) => {
             p-2
             bg-emerald-900
             mb-4
+            z-50
           '
           >
             <p className='py-3'>CapyLogo</p>
@@ -94,7 +95,7 @@ const Header: React.FC<HeaderProps> = ({children}) => {
         <main className='h-full overflow-y-auto flex-1 p-2'>
           {children}
         </main>
-      ): !profile && isLoading ? (
+      ): !user && isLoading ? (
         <main className='h-full flex items-center justify-center overflow-y-auto flex-1 p-2'>
           Loading...
         </main>

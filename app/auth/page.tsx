@@ -13,15 +13,15 @@ import {useProfile} from "@/hooks/useProfile";
 const AuthPage = () => {
   const supabaseClient = useSupabaseClient()
   const router = useRouter()
-  const {profile, isLoading} = useProfile()
+  const {user, isLoading} = useProfile()
   // const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     router.refresh()
 
-  }, [profile])
+  }, [user])
 
-  if (profile) {
+  if (user) {
     return
   }
 

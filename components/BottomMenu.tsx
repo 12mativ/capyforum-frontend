@@ -51,7 +51,8 @@ const BottomMenu = () => {
         <AiOutlinePlus size={24} />
         <span className='text-sm'>Add post</span>
       </div>
-      <div
+      <Link
+        href={'/profile/edit'}
         className='
         flex
         flex-col
@@ -60,7 +61,7 @@ const BottomMenu = () => {
       >
         <IoSettingsOutline size={24} />
         <span className='text-sm'>Settings</span>
-      </div>
+      </Link>
     </div>
   )
 }
