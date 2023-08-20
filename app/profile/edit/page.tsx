@@ -75,7 +75,7 @@ export default function Edit() {
         </Link>
 
         <AvatarInput
-          uid={user?.id}
+          uid={user?.id || ''}
           url={avatarUrl}
           onUpload={(url) => {
             setAvatarUrl(url)
