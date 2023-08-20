@@ -8,7 +8,7 @@ import avatar from '@/images/1.png'
 
 type Profiles = Database['public']['Tables']['profiles']['Row']
 
-const Avatar = ({url}: {url: Profiles['avatar_url']; size: number}) => {
+const Avatar = ({url}: {url: Profiles['avatar_url']}) => {
   const supabase = createClientComponentClient<Database>()
   const [avatarUrl, setAvatarUrl] = useState<Profiles['avatar_url']>(url)
 
