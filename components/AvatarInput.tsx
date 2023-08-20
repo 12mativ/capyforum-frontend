@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from 'react'
 import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 import Image from 'next/image'
-import {Database} from '@/types_db'
+import {Database} from '@/db_types'
 import toast from 'react-hot-toast'
 import avatar from '@/images/1.png'
 import {AiOutlineUpload} from 'react-icons/ai'
