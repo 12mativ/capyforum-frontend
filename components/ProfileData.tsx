@@ -20,10 +20,12 @@ const ProfileData = () => {
     setIsLoading(true)
     getProfileData(supabase, session, user)
       .then((res) => {
-        setUsername(res.username)
-        setAvatarUrl(res.avatar_url)
-        setFullName(res.full_name)
-        setWebsite(res.website)
+        if (res) {
+          setUsername(res.username)
+          setAvatarUrl(res.avatar_url)
+          setFullName(res.full_name)
+          setWebsite(res.website)
+        }
       })
       .finally(() => setIsLoading(false))
   }, [user, getProfileData])

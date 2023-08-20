@@ -3,12 +3,10 @@ import React, {useEffect, useState} from 'react'
 import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 import Image from 'next/image'
 import {Database} from '@/types_db'
-import Input from '@/components/Input'
 import toast from 'react-hot-toast'
 import avatar from '@/images/1.png'
-import Button from '@/components/Button'
 import {AiOutlineUpload} from 'react-icons/ai'
-import {BiLoader} from "react-icons/bi";
+import {BiLoader} from 'react-icons/bi'
 
 type Profiles = Database['public']['Tables']['profiles']['Row']
 

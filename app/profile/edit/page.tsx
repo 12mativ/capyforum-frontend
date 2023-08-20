@@ -53,10 +53,12 @@ export default function Edit() {
   useEffect(() => {
     getProfileData(supabase, session, user)
       .then((res) => {
-        setFullName(res.full_name)
-        setUsername(res.username)
-        setWebsite(res.website)
-        setAvatarUrl(res.avatar_url)
+        if (res) {
+          setFullName(res.full_name)
+          setUsername(res.username)
+          setWebsite(res.website)
+          setAvatarUrl(res.avatar_url)
+        }
       })
       .finally(() => setLoading(false))
   }, [user])

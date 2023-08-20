@@ -1,29 +1,17 @@
 'use client'
 
-import React, {useEffect, useState} from 'react'
-import avatar from '@/images/1.png'
+import React from 'react'
 import Button from '@/components/Button'
 import toast from 'react-hot-toast'
 import {useSupabaseClient} from '@supabase/auth-helpers-react'
 import {useRouter} from 'next/navigation'
-import getProfileData from '@/api/profile'
-import {useProfile} from '@/hooks/useProfile'
 import {AiOutlinePlus} from 'react-icons/ai'
 import {IoSettingsOutline} from 'react-icons/io5'
 import {BiLogOut} from 'react-icons/bi'
 import Link from 'next/link'
-import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
-import Avatar from "@/components/Avatar";
-
 
 const ProfileMenu = () => {
-/*  const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [username, setUsername] = useState<string | null>(null)
-  const [avatarUrl, setAvatarUrl] = useState<string | null>(null)*/
-
   const supabaseClient = useSupabaseClient()
-/*  const supabase = createClientComponentClient()
-  const {user, session} = useProfile()*/
 
   const router = useRouter()
 
