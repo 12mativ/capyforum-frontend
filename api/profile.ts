@@ -26,6 +26,8 @@ const getProfileData = async (
 
     return (data as any) || null
   }
+
+  return null
 }
 
 export default getProfileData
