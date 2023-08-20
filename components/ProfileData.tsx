@@ -1,17 +1,8 @@
 'use client'
 
 import React, {useEffect, useState} from 'react'
-import avatar from '@/images/1.png'
-import Button from '@/components/Button'
-import toast from 'react-hot-toast'
-import {useSupabaseClient} from '@supabase/auth-helpers-react'
-import {useRouter} from 'next/navigation'
 import getProfileData from '@/api/profile'
 import {useProfile} from '@/hooks/useProfile'
-import {AiOutlinePlus} from 'react-icons/ai'
-import {IoSettingsOutline} from 'react-icons/io5'
-import {BiLogOut} from 'react-icons/bi'
-import Link from 'next/link'
 import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 import Avatar from '@/components/Avatar'
 
@@ -50,7 +41,7 @@ const ProfileData = () => {
       '
     >
       <div className='flex flex-col sm:flex-row gap-y-3 sm:gap-x-3'>
-        <Avatar url={avatarUrl}/>
+        <Avatar url={avatarUrl} />
         <div className='flex flex-col gap-y-4'>
           <p className='text-2xl font-bold'>{username || user?.email}</p>
           <p className='text-lg'>Full name: {fullName}</p>
