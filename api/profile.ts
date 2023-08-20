@@ -12,7 +12,7 @@ const getProfileData = async (
   supabase: Database | null,
   session: Session | null,
   user: User | null
-): Promise<GetProfileData> => {
+): Promise<GetProfileData | null> => {
   if (supabase) {
     const {data, error, status} = await supabase
       .from('profiles')
