@@ -1,5 +1,5 @@
-import {Session, User } from '@supabase/supabase-js'
-import {Database} from "@/db_types";
+import {Session, User} from '@supabase/supabase-js'
+import {Database} from '@/db_types'
 
 export interface GetProfileData {
   full_name: string | null
@@ -13,19 +13,19 @@ const getProfileData = async (
   session: Session | null,
   user: User | null
 ): Promise<GetProfileData> => {
+  if (supabase) {
+    const {data, error, status} = await supabase
+      .from('profiles')
+      .select(`full_name, username, website, avatar_url`)
+      .eq('id', user?.id)
+      .single()
 
+    if (error && status !== 406) {
+      throw error
+    }
 
-  const {data, error, status} = await supabase
-    .from('profiles')
-    .select(`full_name, username, website, avatar_url`)
-    .eq('id', user?.id)
-    .single()
-
-  if (error && status !== 406) {
-    throw error
+    return (data as any) || null
   }
-
-  return (data as any) || null
 }
 
 export default getProfileData
