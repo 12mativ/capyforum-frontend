@@ -25,7 +25,7 @@ const Avatar = ({url}: {url: Profiles['avatar_url']; size: number}) => {
         const url = URL.createObjectURL(data)
         setAvatarUrl(url)
       } catch (error) {
-        toast.error('Error downloading image: ', error)
+        toast.error('Error downloading image: ' + error.toString())
       }
     }
 
