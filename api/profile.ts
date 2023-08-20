@@ -1,5 +1,5 @@
-import {Session, User} from '@supabase/supabase-js'
-import {useSessionContext} from "@supabase/auth-helpers-react";
+import {Session, User } from '@supabase/supabase-js'
+import {Database} from "@/db_types";
 
 export interface GetProfileData {
   full_name: string | null
@@ -9,7 +9,7 @@ export interface GetProfileData {
 }
 
 const getProfileData = async (
-  supabase,
+  supabase: Database | null,
   session: Session | null,
   user: User | null
 ): Promise<GetProfileData> => {
