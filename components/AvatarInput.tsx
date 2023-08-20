@@ -1,6 +1,7 @@
 'use client'
 import React, {useEffect, useState} from 'react'
 import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
+import { Error } from '@supabase/supabase-js';
 import Image from 'next/image'
 import {Database} from '@/db_types'
 import toast from 'react-hot-toast'
@@ -30,13 +31,13 @@ const AvatarInput = ({
           .from('avatars')
           .download(path)
         if (error) {
-          throw error
+          throw error as Error
         }
 
         const url = URL.createObjectURL(data)
         setAvatarUrl(url)
-      } catch (error) {
-        toast.error('Error downloading image: ' + error.toString())
+      } catch (error: Error) {
+        toast.error('Error downloading image: ' + error)
       }
     }
 
