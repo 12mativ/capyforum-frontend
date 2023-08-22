@@ -27,15 +27,17 @@ const CreatePost = () => {
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     setIsLoading(true)
-    createPost(user?.id, supabase, data.title, data.content)
-      .then(() => {
-        toast.success('Post has been made!')
-        setIsLoading(false)
-        router.push('/profile')
-      })
-      .catch((err) => {
-        toast.error(err)
-      })
+    if (user) {
+      createPost(user.id, supabase, data.title, data.content)
+        .then(() => {
+          toast.success('Post has been made!')
+          setIsLoading(false)
+          router.push('/profile')
+        })
+        .catch((err) => {
+          toast.error(err)
+        })
+    }
   }
 
   return (
