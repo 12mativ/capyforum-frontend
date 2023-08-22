@@ -71,7 +71,7 @@ export const getPost = async (
 export const getUserInfo = async (
   userId: string | null,
   supabase: SupabaseClient | null
-): Promise<{username: string, avatar_url: string} | null> => {
+): Promise<{username: string; avatar_url: string} | null> => {
   if (supabase) {
     const {data, error, status} = await supabase
       .from('profiles')
@@ -109,6 +109,7 @@ export const createPost = async (
     }
     return (data as any) || null
   }
+  return null
 }
 
 export const deletePost = async (
@@ -126,4 +127,5 @@ export const deletePost = async (
     }
     return (data as any) || null
   }
+  return null
 }
