@@ -46,12 +46,14 @@ const ProfileMenu = () => {
         gap-y-3
       '
     >
-      <Button
-        type='button'
-        className='xl:hidden flex items-center justify-center px-3 py-3 w-fit'
-      >
-        <AiOutlinePlus size={26} />
-      </Button>
+      <Link href={'/profile/create-post'}>
+        <Button
+          type='button'
+          className='xl:hidden flex items-center justify-center px-3 py-3 w-fit'
+        >
+          <AiOutlinePlus size={26} />
+        </Button>
+      </Link>
       <Link href={'/profile/edit'}>
         <Button className='xl:hidden flex items-center justify-center px-3 py-3 w-fit'>
           <IoSettingsOutline size={26} />
@@ -73,13 +75,17 @@ const ProfileMenu = () => {
       >
         <BiLogOut size={26} />
       </Button>
-      <Button
-        type='button'
-        className='md:hidden xl:flex items-center justify-center gap-x-2'
-      >
-        <AiOutlinePlus size={20} />
-        <p>Create new post</p>
-      </Button>
+
+      <Link href={'/profile/create-post'} className='w-full'>
+        <Button
+          type='button'
+          className='md:hidden xl:flex items-center justify-center gap-x-2'
+        >
+          <AiOutlinePlus size={20} />
+          <p>Create new post</p>
+        </Button>
+      </Link>
+
       <Link href={'/profile/edit'} className='w-full'>
         <Button
           type='button'

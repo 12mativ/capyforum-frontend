@@ -1,4 +1,4 @@
-import {Session, SupabaseClient, User} from '@supabase/supabase-js'
+import {SupabaseClient, User} from '@supabase/supabase-js'
 
 export interface GetProfileData {
   full_name: string | null
@@ -9,7 +9,6 @@ export interface GetProfileData {
 
 const getProfileData = async (
   supabase: SupabaseClient | null,
-  session: Session | null,
   user: User | null
 ): Promise<GetProfileData | null> => {
   if (supabase) {

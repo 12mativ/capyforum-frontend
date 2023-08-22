@@ -1,14 +1,14 @@
-import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
-import { NextResponse } from 'next/server'
+import {createMiddlewareClient} from '@supabase/auth-helpers-nextjs'
+import {NextResponse} from 'next/server'
 
-import type { NextRequest } from 'next/server'
+import type {NextRequest} from 'next/server'
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
-  const supabase = createMiddlewareClient({ req, res })
+  const supabase = createMiddlewareClient({req, res})
 
   const {
-    data: { user },
+    data: {user},
   } = await supabase.auth.getUser()
 
   // if user is signed in and the current path is / redirect the user to /profile
@@ -22,7 +22,11 @@ export async function middleware(req: NextRequest) {
   }
 
   // if user is not signed in and the current path is not / redirect the user to /auth
-  if (!user && req.nextUrl.pathname !== '/auth' && req.nextUrl.pathname !== '/') {
+  if (
+    !user &&
+    req.nextUrl.pathname !== '/auth' &&
+    req.nextUrl.pathname !== '/'
+  ) {
     return NextResponse.redirect(new URL('/auth', req.url))
   }
 
@@ -30,5 +34,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/profile', '/auth', '/heap', '/profile/edit'],
+  matcher: ['/', '/profile', '/auth', '/heap', '/profile/edit', '/profile/create-post', '/post/:path*'],
 }

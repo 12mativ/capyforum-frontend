@@ -8,7 +8,12 @@ import avatar from '@/images/1.png'
 
 type Profiles = Database['public']['Tables']['profiles']['Row']
 
-const Avatar = ({url}: {url: Profiles['avatar_url']}) => {
+interface AvatarProps {
+  url: Profiles['avatar_url']
+  isPostItemAvatar?: boolean
+}
+
+const Avatar: React.FC<AvatarProps> = ({url, isPostItemAvatar}) => {
   const supabase = createClientComponentClient<Database>()
   const [avatarUrl, setAvatarUrl] = useState<Profiles['avatar_url']>(url)
 
@@ -32,11 +37,46 @@ const Avatar = ({url}: {url: Profiles['avatar_url']}) => {
     if (url) downloadImage(url)
   }, [url, supabase])
 
-  return (
+  return isPostItemAvatar ? (
     <div
       className='
         flex
         flex-col
+        flex-none
+        justify-center
+        self-start
+        w-[100px] h-[100px]
+        md:w-[120px] md:h-[120px]
+        lg:w-[170px] lg:h-[170px]
+        relative
+      '
+    >
+      {avatarUrl ? (
+        <Image
+          fill={true}
+          src={avatarUrl}
+          alt='Avatar'
+          className='rounded-lg'
+        />
+      ) : (
+        <img
+          src={avatar.src}
+          alt='Avatar'
+          className='
+            w-[100px] h-[100px]
+            md:w-[120px] md:h-[120px]
+            lg:w-[170px] lg:h-[170px]
+            rounded-lg
+          '
+        />
+      )}
+    </div>
+  ) : (
+    <div
+      className='
+        flex
+        flex-col
+        flex-none
         justify-center
         self-start
         w-[180px] h-[180px]

@@ -14,11 +14,11 @@ const ProfileData = () => {
   const [website, setWebsite] = useState<string | null>(null)
 
   const supabase = createClientComponentClient()
-  const {user, session} = useProfile()
+  const {user} = useProfile()
 
   useEffect(() => {
     setIsLoading(true)
-    getProfileData(supabase, session, user)
+    getProfileData(supabase, user)
       .then((res) => {
         if (res) {
           setUsername(res.username)
@@ -45,9 +45,9 @@ const ProfileData = () => {
       <div className='flex flex-col sm:flex-row gap-y-3 sm:gap-x-3'>
         <Avatar url={avatarUrl} />
         <div className='flex flex-col gap-y-4'>
-          <p className='text-2xl font-bold'>{username || user?.email}</p>
-          <p className='text-lg'>Full name: {fullName}</p>
-          <p className='text-lg'>Website: {website}</p>
+          <p className='text-2xl font-bold'>{username || user?.id}</p>
+          <p className='text-lg'>Full name: {fullName || '-----'}</p>
+          <p className='text-lg'>Website: {website || '-----'}</p>
         </div>
       </div>
     </div>

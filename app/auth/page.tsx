@@ -61,7 +61,7 @@ const AuthPage = () => {
             }}
           />
         </div>
-      ) : (<div>Loading...</div>)}
+      ) : (<div className='text-3xl'>Loading...</div>)}
 
     </div>
   )

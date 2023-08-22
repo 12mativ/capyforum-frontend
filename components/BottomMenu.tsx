@@ -1,8 +1,8 @@
 import React from 'react'
-import {AiOutlineHome, AiOutlinePlus} from "react-icons/ai";
-import {MdOutlineDescription} from "react-icons/md";
-import {IoSettingsOutline} from "react-icons/io5";
-import Link from "next/link";
+import {AiOutlineHome, AiOutlinePlus} from 'react-icons/ai'
+import {MdOutlineDescription} from 'react-icons/md'
+import {IoSettingsOutline} from 'react-icons/io5'
+import Link from 'next/link'
 
 const BottomMenu = () => {
   return (
@@ -15,7 +15,8 @@ const BottomMenu = () => {
         justify-around
         w-full
         bg-emerald-900
-        p-3
+        px-3
+        py-1
         text-neutral-200
       '
     >
@@ -27,7 +28,7 @@ const BottomMenu = () => {
         items-center
       '
       >
-        <AiOutlineHome size={24} />
+        <AiOutlineHome size={20} />
         <span className='text-sm'>Heap</span>
       </Link>
       <Link
@@ -38,19 +39,20 @@ const BottomMenu = () => {
         items-center
       '
       >
-        <MdOutlineDescription size={24} />
+        <MdOutlineDescription size={20} />
         <span className='text-sm'>Profile</span>
       </Link>
-      <div
+      <Link
+        href={'/profile/create-post'}
         className='
         flex
         flex-col
         items-center
       '
       >
-        <AiOutlinePlus size={24} />
+        <AiOutlinePlus size={20} />
         <span className='text-sm'>Add post</span>
-      </div>
+      </Link>
       <Link
         href={'/profile/edit'}
         className='
@@ -59,7 +61,7 @@ const BottomMenu = () => {
         items-center
       '
       >
-        <IoSettingsOutline size={24} />
+        <IoSettingsOutline size={20} />
         <span className='text-sm'>Settings</span>
       </Link>
     </div>

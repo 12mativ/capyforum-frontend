@@ -51,7 +51,7 @@ export default function Edit() {
   }
 
   useEffect(() => {
-    getProfileData(supabase, session, user)
+    getProfileData(supabase, user)
       .then((res) => {
         if (res) {
           setFullName(res.full_name)

@@ -86,7 +86,7 @@ const Header: React.FC<HeaderProps> = ({children}) => {
               </Button>
             </div>
           </div>
-          <main className='md:h-full overflow-y-auto flex-1 p-2 pt-20 pb-20 md:pb-2'>
+          <main className='md:h-full overflow-y-auto flex-1 p-2 pt-20 pb-16 md:pb-2'>
             {children}
           </main>
           <BottomMenu />
@@ -96,11 +96,11 @@ const Header: React.FC<HeaderProps> = ({children}) => {
           {children}
         </main>
       ): !user && isLoading ? (
-        <main className='h-full flex items-center justify-center overflow-y-auto flex-1 p-2'>
+        <main className='h-full flex items-center justify-center overflow-y-auto flex-1 p-2 text-3xl'>
           Loading...
         </main>
       ) : (
-        <main className='h-full flex items-center justify-center overflow-y-auto flex-1 p-2'>
+        <main className='h-full flex items-center justify-center overflow-y-auto flex-1 p-2 text-3xl'>
           Goodbye!
         </main>
       )}
