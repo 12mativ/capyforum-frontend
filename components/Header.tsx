@@ -1,17 +1,13 @@
 'use client'
 
-import React, {useEffect, useMemo} from 'react'
-import {AiOutlineHome, AiOutlineLaptop} from 'react-icons/ai'
+import React, {useMemo} from 'react'
+import {AiOutlineHome} from 'react-icons/ai'
 import {MdOutlineDescription} from 'react-icons/md'
 import NavbarItem from '@/components/NavbarItem'
 import Button from '@/components/Button'
-import {CiLogout} from 'react-icons/ci'
 import {BiLogOut} from 'react-icons/bi'
 import BottomMenu from '@/components/BottomMenu'
-import {
-  useSessionContext,
-  useSupabaseClient,
-} from '@supabase/auth-helpers-react'
+import {useSupabaseClient} from '@supabase/auth-helpers-react'
 import {useProfile} from '@/hooks/useProfile'
 import {usePathname, useRouter} from 'next/navigation'
 import toast from 'react-hot-toast'
@@ -86,7 +82,7 @@ const Header: React.FC<HeaderProps> = ({children}) => {
               </Button>
             </div>
           </div>
-          <main className='md:h-full overflow-y-auto flex-1 p-2 pt-20 pb-16 md:pb-2'>
+          <main className='md:h-full flex-1 p-2 pt-20 pb-16 md:pb-2'>
             {children}
           </main>
           <BottomMenu />

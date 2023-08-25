@@ -3,22 +3,40 @@
 import PostItem from '@/components/PostItem'
 import {useEffect, useState} from 'react'
 import {useRouter} from 'next/navigation'
-import {getAllPosts, PostData} from '@/api/posts'
+import {getHeapPosts, PostData} from '@/api/posts'
 import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 import toast from 'react-hot-toast'
+import IsLoading from '@/components/IsLoading'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 const Heap = () => {
   const [posts, setPosts] = useState<PostData[] | null>(null)
+  const [page, setPage] = useState(1)
+  const [pageSize, setPageSize] = useState(5)
+  const [hasMore, setHasMore] = useState(true)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isPostsChanged, setIsPostsChanged] = useState<boolean>(false)
 
   const supabase = createClientComponentClient()
   const router = useRouter()
 
-  useEffect(() => {
-    router.refresh()
-    router.push('/heap')
+  const fetchMoreData = async () => {
+    try {
+      const newPosts = await getHeapPosts(supabase, page + 1, pageSize)
+      if (newPosts?.length === 0) {
+        setHasMore(false)
+      } else {
+        setPosts([...posts, ...newPosts])
+        setPage(page + 1)
+      }
+    } catch (error) {
+      toast.error(error)
+    }
+  }
 
-    getAllPosts(supabase)
+  useEffect(() => {
+    setIsLoading(true)
+    getHeapPosts(supabase, 1, pageSize)
       .then((res) => {
         if (res) {
           setPosts(res)
@@ -27,21 +45,34 @@ const Heap = () => {
       .catch((err) => {
         toast.error(err)
       })
+      .finally(() => setIsLoading(false))
   }, [isPostsChanged])
 
-  return (
-    <div
-      className='
-      flex
-      flex-col
-      gap-y-3
-      items-center
-    '
+  useEffect(() => {
+    router.refresh()
+    router.push('/heap')
+  }, [])
+
+  return isLoading ? (
+    <IsLoading />
+  ) : posts?.length !== 0 ? (
+    <InfiniteScroll
+      dataLength={posts ? posts.length : 0}
+      next={fetchMoreData}
+      hasMore={hasMore}
+      loader={<IsLoading />}
+      className='flex flex-col gap-y-3 items-center'
     >
-      {posts?.length !== 0 ? posts?.map((post) => {
-        return <PostItem key={post.id} setIsPostsChanged={setIsPostsChanged} post={post} />
-      }) : <p>No post here :(</p>}
-    </div>
+      {posts?.map((post) => (
+        <PostItem
+          key={post.id}
+          setIsPostsChanged={setIsPostsChanged}
+          post={post}
+        />
+      ))}
+    </InfiniteScroll>
+  ) : (
+    <p>No post here :(</p>
   )
 }
 

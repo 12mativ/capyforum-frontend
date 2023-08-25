@@ -9,28 +9,31 @@ export interface PostData {
   image_url: string
 }
 
-export const getAllPosts = async (
-  supabase: SupabaseClient | null
+export const getHeapPosts = async (
+  supabase: SupabaseClient | null,
+  page: number,
+  pageSize: number
 ): Promise<PostData[] | null> => {
   if (supabase) {
     const {data, error, status} = await supabase
       .from('posts')
       .select('*')
       .order('created_at', {ascending: false})
+      .range((page - 1) * pageSize, page * pageSize - 1)
 
     if (error && status !== 406) {
       throw error
     }
-
     return (data as any) || null
   }
-
   return null
 }
 
-export const getUserPosts = async (
+export const getProfilePosts = async (
   supabase: SupabaseClient | null,
-  user: User | null
+  user: User | null,
+  page: number,
+  pageSize: number
 ): Promise<PostData[] | null> => {
   if (supabase) {
     const {data, error, status} = await supabase
@@ -38,6 +41,7 @@ export const getUserPosts = async (
       .select('*')
       .eq('author_id', user?.id)
       .order('created_at', {ascending: false})
+      .range((page - 1) * pageSize, page * pageSize - 1)
 
     if (error && status !== 406) {
       throw error
