@@ -13,7 +13,7 @@ export const getHeapPosts = async (
   supabase: SupabaseClient | null,
   page: number,
   pageSize: number
-): Promise<PostData[] | null> => {
+): Promise<PostData[]> => {
   if (supabase) {
     const {data, error, status} = await supabase
       .from('posts')
@@ -24,9 +24,9 @@ export const getHeapPosts = async (
     if (error && status !== 406) {
       throw error
     }
-    return (data as any) || null
+    return (data as any) || []
   }
-  return null
+  return []
 }
 
 export const getProfilePosts = async (
@@ -34,7 +34,7 @@ export const getProfilePosts = async (
   user: User | null,
   page: number,
   pageSize: number
-): Promise<PostData[] | null> => {
+): Promise<PostData[]> => {
   if (supabase) {
     const {data, error, status} = await supabase
       .from('posts')
@@ -47,9 +47,9 @@ export const getProfilePosts = async (
       throw error
     }
 
-    return (data as any) || null
+    return (data as any) || []
   }
-  return null
+  return []
 }
 
 export const getPost = async (
