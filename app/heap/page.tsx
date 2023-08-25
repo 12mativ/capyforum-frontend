@@ -10,7 +10,7 @@ import IsLoading from '@/components/IsLoading'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 const Heap = () => {
-  const [posts, setPosts] = useState<PostData[] | null>(null)
+  const [posts, setPosts] = useState<PostData[]>([])
   const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState(5)
   const [hasMore, setHasMore] = useState(true)
@@ -26,8 +26,8 @@ const Heap = () => {
       if (newPosts?.length === 0) {
         setHasMore(false)
       } else {
-        setPosts([...posts, ...newPosts])
-        setPage(page + 1)
+        setPosts((prevState) => [...prevState, ...newPosts])
+        setPage((prevState) => prevState + 1)
       }
     } catch (error) {
       toast.error(error)
