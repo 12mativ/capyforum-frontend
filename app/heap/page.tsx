@@ -3,7 +3,7 @@
 import PostItem from '@/components/PostItem'
 import {useEffect, useState} from 'react'
 import {useRouter} from 'next/navigation'
-import {getHeapPosts, PostData} from '@/api/posts'
+import {getHeapPosts, getProfilePosts, PostData} from '@/api/posts'
 import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 import toast from 'react-hot-toast'
 import IsLoading from '@/components/IsLoading'
@@ -21,16 +21,19 @@ const Heap = () => {
   const router = useRouter()
 
   const fetchMoreData = async () => {
-    try {
-      const newPosts = await getHeapPosts(supabase, page + 1, pageSize)
-      if (newPosts?.length === 0) {
-        setHasMore(false)
-      } else {
-        setPosts((prevState) => [...prevState, ...newPosts])
-        setPage((prevState) => prevState + 1)
-      }
-    } catch (error: any) {
-      toast.error(error.toString())
+    let newPosts
+    await getHeapPosts(supabase, page + 1, pageSize)
+      .then((res) => {
+        newPosts = res
+      })
+      .catch((err) => {
+        toast.error(err)
+      })
+    if (newPosts?.length === 0) {
+      setHasMore(false)
+    } else {
+      setPosts((prevState) => [...prevState, ...newPosts])
+      setPage((prevState) => prevState + 1)
     }
   }
 

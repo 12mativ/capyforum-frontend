@@ -26,16 +26,19 @@ const Profile = () => {
   const [isPostsChanged, setIsPostsChanged] = useState<boolean>(false)
 
   const fetchMoreData = async () => {
-    try {
-      const newPosts = await getProfilePosts(supabase, user, page + 1, pageSize)
-      if (newPosts?.length === 0) {
-        setHasMore(false)
-      } else {
-        setPosts((prevState) => [...prevState, ...newPosts])
-        setPage((prevState) => prevState + 1)
-      }
-    } catch (error: any) {
-      toast.error(error.toString())
+    let newPosts
+    await getProfilePosts(supabase, user, page + 1, pageSize)
+      .then((res) => {
+        newPosts = res
+      })
+      .catch((err) => {
+        toast.error(err)
+      })
+    if (newPosts?.length === 0) {
+      setHasMore(false)
+    } else {
+      setPosts((prevState) => [...prevState, ...newPosts])
+      setPage((prevState) => prevState + 1)
     }
   }
 
