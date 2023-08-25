@@ -35,7 +35,7 @@ const Profile = () => {
         setPage((prevState) => prevState + 1)
       }
     } catch (error) {
-      toast.error(error)
+      toast.error(error.toString())
     }
   }
 
@@ -49,7 +49,7 @@ const Profile = () => {
           }
         })
         .catch((err) => {
-          throw err
+          toast.error(err.toString())
         })
         .finally(() => setIsLoading(false))
     }

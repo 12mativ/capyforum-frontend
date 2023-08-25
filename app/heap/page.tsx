@@ -30,7 +30,7 @@ const Heap = () => {
         setPage((prevState) => prevState + 1)
       }
     } catch (error) {
-      toast.error(error)
+      toast.error(error.toString())
     }
   }
 
@@ -43,7 +43,7 @@ const Heap = () => {
         }
       })
       .catch((err) => {
-        toast.error(err)
+        toast.error(err.toString())
       })
       .finally(() => setIsLoading(false))
   }, [isPostsChanged])
