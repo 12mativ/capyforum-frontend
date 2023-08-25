@@ -26,7 +26,7 @@ const Profile = () => {
   const [isPostsChanged, setIsPostsChanged] = useState<boolean>(false)
 
   const fetchMoreData = async () => {
-    let newPosts: PostData[]
+    let newPosts = []
     await getProfilePosts(supabase, user, page + 1, pageSize)
       .then((res) => {
         newPosts = res

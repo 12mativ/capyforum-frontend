@@ -21,7 +21,7 @@ const Heap = () => {
   const router = useRouter()
 
   const fetchMoreData = async () => {
-    let newPosts: PostData[]
+    let newPosts = []
     await getHeapPosts(supabase, page + 1, pageSize)
       .then((res) => {
         newPosts = res
