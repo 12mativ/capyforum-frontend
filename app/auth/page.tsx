@@ -14,7 +14,6 @@ const AuthPage = () => {
   const supabaseClient = useSupabaseClient()
   const router = useRouter()
   const {user, isLoading} = useProfile()
-  // const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     router.refresh()

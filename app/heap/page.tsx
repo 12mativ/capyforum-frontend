@@ -29,7 +29,7 @@ const Heap = () => {
         setPosts((prevState) => [...prevState, ...newPosts])
         setPage((prevState) => prevState + 1)
       }
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error.toString())
     }
   }
